@@ -32,6 +32,7 @@ export default class BoardContainer {
 
   selectBoard(id: string) {
     this.active = this.boards.find( b => b.id === id);
+    console.log(this.active);
   }
 
   async actionLoad() {
