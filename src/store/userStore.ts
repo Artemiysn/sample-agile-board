@@ -23,6 +23,10 @@ export default class UserStore {
     this.actionLoad();
   }
 
+  // get userById(): (id: string): <IUser> {
+
+  // }
+
   get list(): {id: string, name: string}[] {
     if (this.users && this.users.length > 0)
       return this.users?.map(({ id, name }) => ({ id, name }));
