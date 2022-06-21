@@ -32,7 +32,6 @@ export default class BoardContainer {
 
   selectBoard(id: string) {
     this.active = this.boards.find( b => b.id === id);
-    console.log(this.active);
   }
 
   async actionLoad() {
@@ -42,8 +41,8 @@ export default class BoardContainer {
       runInAction(() => {
         for (let { id, title, sections } of boards) {
           this.boards.push(new Board(id, title, sections));
-          this.active = this.boards.length > 0 ? this.boards[0] : undefined;
         }
+        this.active = this.boards.length > 0 ? this.boards[0] : undefined;
       });
     } catch (e) {
       // страница ошибки

@@ -2,7 +2,6 @@ import { CardContent, Typography } from '@mui/material'
 import React from 'react'
 import { ITask } from '../../../store/sectionStore';
 import User from '../../common/User/User';
-import { IUser } from '../../../store/userStore';
 import useStore from "../../../hooks/useStore";
 
 export default function Task(task: ITask) {

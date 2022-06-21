@@ -1,6 +1,6 @@
 import { Card } from "@mui/material";
 import { observer } from "mobx-react-lite";
-import React from "react";
+import React, { useEffect } from "react";
 import { Draggable, DraggingStyle, NotDraggingStyle } from "react-beautiful-dnd";
 import { ISection } from "../../../store/sectionStore";
 import Task from "./../Task/Task";
@@ -14,6 +14,11 @@ function getItemStyle(draggableStyle: DraggingStyle | NotDraggingStyle | undefin
 };
 
 function Column( section: ISection ) {
+
+  useEffect( () => {
+    console.log('column changed');
+  })
+
   return (
     <div>
       {section?.tasks?.map((task, index) => {

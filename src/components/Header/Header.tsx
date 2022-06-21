@@ -28,10 +28,7 @@ function Header() {
                   sx={{ m: 1, minWidth: 120 }} size="small"
                   native
                   value={Boards?.active?.id || ""}
-                  onChange={(e) => {
-                    const id: string = e.target.value;
-                    Boards.selectBoard(id);
-                  }}
+                  onChange={(e) => Boards.selectBoard(e.target.value)}
                 >
                   {Boards.list.map((b) => {
                     return (

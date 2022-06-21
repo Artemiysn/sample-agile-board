@@ -48,7 +48,9 @@ export class Section {
     try {
         const tasks = await ApiCall.getTasks(`boards/${this.parentBoardId}/tasks/${this.id}`);
         runInAction(() => {
-            this.tasks = tasks;
+          for (let { id, title, description, assigneeID } of tasks.tasks) {
+            this.tasks.push({id: id, title: title, description: description, assigneeID: assigneeID});
+          }
         });
     } catch(e) {
         // страница ошибки
@@ -61,7 +63,7 @@ export class Section {
         await ApiCall.put(`boards/${this.parentBoardId}/tasks/${this.id}`, {tasks});
     } catch(e) {
         // страница ошибки
-        runInAction(() => console.log("can not resolve put request for tasks"));
+        console.log("can not resolve put request for tasks");
     }
   }
 

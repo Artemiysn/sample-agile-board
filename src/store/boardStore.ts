@@ -25,15 +25,16 @@ export default class Board {
     }
 
     moveTask(id: string, sourceId: string, destinationId: string, destinationIndex: number) {
-        // не забудь передать source.droppableId и destination.droppableId destination.index
         const fromSection = this.sections.find(s => s.id === sourceId);
         const toSection = this.sections.find(s => s.id === destinationId);
-        if (toSection === undefined) return null;
         const taskToMoveIndex = fromSection?.tasks.findIndex(t => t.id === id);
         if (taskToMoveIndex === undefined) return null;
         const task = fromSection?.tasks.splice(taskToMoveIndex, 1)[0];
         if (task === undefined) return null;
-        toSection.tasks.splice(destinationIndex, 0, task);
+        toSection?.tasks.splice(destinationIndex, 0, task);
+        // saving to db
+        fromSection?.save(fromSection.tasks);
+        toSection?.save(toSection.tasks);
     }
 
     addTask(sectionId: string, payload: {title: string; description: string; assigneeID: string}) {

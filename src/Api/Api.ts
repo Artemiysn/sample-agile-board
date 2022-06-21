@@ -60,7 +60,7 @@ class ApiCall {
    * @param path - path like boards/DEVELOPMENT/tasks/
    * @returns Tasks from section or specific task
    */
-  async getTasks(path: string): Promise<[ITask]> {
+  async getTasks(path: string): Promise<{id: string, tasks: [ITask]}> {
     return await this.performGet(path);
   }
 
