@@ -44,6 +44,7 @@ export default class Board {
             id: uuidv4(),
             ...payload,
         });
+        // saving to db
+        section.save(section.tasks);
     }
-
 }

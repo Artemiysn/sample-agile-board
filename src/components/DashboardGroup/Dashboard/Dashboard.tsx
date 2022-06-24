@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import useStore from "../../../hooks/useStore";
 import { Box, Grid, Typography, Paper, Button } from "@mui/material";
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 import Column from "../Column/Column";
+import NewTaskDialog from "../NewTaskDialog/NewTaskDialog";
 
 function getListStyle(isDraggingOver: boolean) {
   return {
@@ -15,6 +16,11 @@ function getListStyle(isDraggingOver: boolean) {
 
 function Dashboard() {
     const { Boards } = useStore();
+    const [newTaskToSection, setNewTaskToSection] = useState<null | string>(null);
+
+    const closeDialog = useCallback( () => {
+      setNewTaskToSection(null);
+    }, [setNewTaskToSection]);
 
     const onDragEnd = useCallback( (event: DropResult) => {
         const {source, destination, draggableId: taskId} = event;
@@ -44,9 +50,7 @@ function Dashboard() {
                         justifyContent="space-between"
                       >
                         <Typography variant="h5">{section?.title}</Typography>
-                        <Button variant="outlined" color="primary" onClick={ () => {
-                            // new task
-                        }}>
+                        <Button variant="outlined" color="primary" onClick={ () => setNewTaskToSection(section.id) }>
                           Add
                         </Button>
                       </Box>
@@ -70,7 +74,7 @@ function Dashboard() {
               })}
             </Grid>
           </DragDropContext>
-          {/* <NewTaskDialog /> */}
+          <NewTaskDialog {...{open: Boolean(newTaskToSection), sectionId: newTaskToSection, handleClose: closeDialog}} />
         </Box>
       );
 

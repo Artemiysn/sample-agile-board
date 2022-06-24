@@ -30,7 +30,7 @@ export default class BoardContainer {
     return this.boards.map(({ id, title }) => ({ id, title }));
   }
 
-  selectBoard(id: string) {
+  selectBoard(id: string): void {
     this.active = this.boards.find( b => b.id === id);
   }
 
