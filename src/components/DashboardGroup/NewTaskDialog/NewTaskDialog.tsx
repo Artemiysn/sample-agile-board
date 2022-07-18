@@ -1,4 +1,4 @@
-import { TextareaHTMLAttributes, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import {
   Select,
   TextField,
@@ -21,20 +21,20 @@ interface newTaskDialogProps {
   handleClose: () => void
 }
 
-interface iTaskState {
+interface ITaskState {
   title: string,
   description: string,
   assigneeID: string
 }
 
 export default function NewTaskDialog( props: newTaskDialogProps) {
-  const [taskState, setTaskState] = useState<iTaskState>({title: '', description: '', assigneeID: ''});
+  const [taskState, setTaskState] = useState<ITaskState>({title: '', description: '', assigneeID: ''});
   const { Users, Boards } = useStore();
 
   const updateTaskState = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value, name } = event.target;
 
-    setTaskState((prevTaskState: iTaskState) => ({
+    setTaskState((prevTaskState: ITaskState) => ({
       ...prevTaskState,
       [name]: value
     }));
@@ -42,7 +42,7 @@ export default function NewTaskDialog( props: newTaskDialogProps) {
 
   const updateUser = (event: SelectChangeEvent<string>) => {
     const { value, name } = event.target;
-    setTaskState((prevTaskState: iTaskState) => ({
+    setTaskState((prevTaskState: ITaskState) => ({
       ...prevTaskState,
       [name]: value
     }));

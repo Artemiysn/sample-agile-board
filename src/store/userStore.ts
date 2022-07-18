@@ -40,7 +40,7 @@ export default class UserStore {
       });
     } catch (e) {
       // страница ошибки
-      runInAction(() => console.log("not getting users from api"));
+      console.log("not getting users from api");
     }
   }
 }
