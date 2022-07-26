@@ -16,6 +16,7 @@ server.listen(PORT, () => {
   console.log('Server is running');
 });
 
+const express = require('express');
 const path = require('path');
 const app = express();
 app.use(express.static('build'));
