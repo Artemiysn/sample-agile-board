@@ -2,7 +2,8 @@ import { IUser } from "./../store/userStore";
 import { ITask } from "../store/sectionStore";
 import { IBoard } from "../store/boardContainerStore";
 
-export const ENDPOINT: string = "//localhost:3001/";
+// export const ENDPOINT: string = "//localhost:3001/";
+export const ENDPOINT: string = "https://agile-board-1.herokuapp.com/";
 
 /**
  * interface for several get requests. endpoint: return type
