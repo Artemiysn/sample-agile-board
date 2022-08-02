@@ -1,10 +1,6 @@
-import {
-  action,
-  makeObservable,
-  observable,
-  runInAction,
-} from "mobx";
+import { action, makeObservable, observable, runInAction } from "mobx";
 import ApiCall from "../Api/Api";
+import rootStore from "./rootStore";
 
 export interface ITask {
   id: string;
@@ -26,17 +22,23 @@ export class Section {
   id: string;
   title: string;
   tasks: ITask[] = [];
+  root: rootStore;
 
   /**
    * id of parent board - MAIN or DEVELOPMENT
    */
   parentBoardId: string;
 
-  constructor(parentBoardId: string, id: string, title: string) {
+  constructor(
+    parentBoardId: string,
+    id: string,
+    title: string,
+    root: rootStore
+  ) {
     makeObservable(this, {
-      tasks: observable,
-      actionLoad: action
+      tasks: observable
     });
+    this.root = root;
     this.parentBoardId = parentBoardId;
     this.id = id;
     this.title = title;
@@ -45,28 +47,39 @@ export class Section {
 
   async actionLoad() {
     this.tasks = [];
+    this.root.status.tasks = "pending";
     try {
-        const tasks = await ApiCall.getTasks(`boards/${this.parentBoardId}/tasks/${this.id}`);
-        runInAction(() => {
-          for (let { id, title, description, assigneeID } of tasks.tasks) {
-            this.tasks.push({id: id, title: title, description: description, assigneeID: assigneeID});
-          }
-        });
-    } catch(e) {
-        // страница ошибки
-      runInAction(() => console.log("not getting tasks for section from api"));
+      const tasks = await ApiCall.getTasks(
+        `boards/${this.parentBoardId}/tasks/${this.id}`
+      );
+      runInAction(() => {
+        for (let { id, title, description, assigneeID } of tasks.tasks) {
+          this.tasks.push({
+            id: id,
+            title: title,
+            description: description,
+            assigneeID: assigneeID,
+          });
+        }
+        this.root.status.tasks = "done";
+      });
+    } catch (e) {
+      // страница ошибки
+      console.log("not getting tasks for section from api");
+      this.root.error = true;
     }
   }
 
   async save(tasks: ITask[]) {
     try {
-        await ApiCall.put(`boards/${this.parentBoardId}/tasks/${this.id}`, {tasks});
-    } catch(e) {
-        // страница ошибки
-        console.log("can not resolve put request for tasks");
+      await ApiCall.put(`boards/${this.parentBoardId}/tasks/${this.id}`, {
+        tasks,
+      });
+    } catch (e) {
+      // страница ошибки
+      console.log("can not resolve put request for tasks");
+      this.root.error = true;
     }
   }
 
 }
-
-

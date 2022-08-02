@@ -18,7 +18,6 @@ class ApiCall {
   domain: string;
 
   constructor(domain: string) {
-    console.log("Api Call created");
     this.domain = domain;
   }
 

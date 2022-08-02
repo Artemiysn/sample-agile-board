@@ -1,5 +1,12 @@
-import { action, computed, makeObservable, observable, runInAction } from "mobx";
+import {
+  action,
+  computed,
+  makeObservable,
+  observable,
+  runInAction,
+} from "mobx";
 import ApiCall from "../Api/Api";
+import rootStore from "./rootStore";
 
 export interface IUser {
   id: string;
@@ -9,21 +16,21 @@ export interface IUser {
 }
 
 export default class UserStore {
-
   users: IUser[] = [];
   me = {} as IUser;
+  root: rootStore;
 
-  constructor() {
+  constructor(root: rootStore) {
+    this.root = root;
     makeObservable(this, {
       users: observable,
       me: observable,
-      list: computed,
-      actionLoad: action
+      list: computed
     });
     this.actionLoad();
   }
 
-  get list(): {id: string, name: string}[] {
+  get list(): { id: string; name: string }[] {
     if (this.users && this.users.length > 0)
       return this.users?.map(({ id, name }) => ({ id, name }));
     return [];
@@ -31,16 +38,20 @@ export default class UserStore {
 
   async actionLoad() {
     this.users = [];
+    this.root.status.users = "pending";
     try {
-      const users = await ApiCall.get("users");
-      const me = await ApiCall.get("me");
+      const values = await Promise.all([
+        ApiCall.get("users"),
+        ApiCall.get("me"),
+      ]);
       runInAction(() => {
-        this.users = users;
-        this.me = me;
+        this.users = values[0];
+        this.me = values[1];
+        this.root.status.users = "done";
       });
     } catch (e) {
-      // страница ошибки
-      console.log("not getting users from api");
+      this.root.error = true;
+      console.error("not getting users from api");
     }
   }
 }

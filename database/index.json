@@ -123,12 +123,11 @@
   },
   "board_main_tasks": [
     {
+      "tasks": [],
+      "id": "BACKLOG"
+    },
+    {
       "tasks": [
-        {
-          "id": "1111",
-          "title": "Task 1",
-          "description": "Task 1 description"
-        },
         {
           "id": "3b6385bd-0c75-4bc1-b66b-26b9fba065d3",
           "title": "Created T",
@@ -136,75 +135,18 @@
           "assigneeID": "4"
         }
       ],
-      "id": "BACKLOG"
-    },
-    {
-      "tasks": [
-        {
-          "id": "2",
-          "title": "Task 2",
-          "description": "Task some task description 3"
-        },
-        {
-          "id": "22",
-          "title": "Task 2",
-          "description": "Task some task description 3"
-        }
-      ],
       "id": "OPEN"
     },
     {
-      "tasks": [
-        {
-          "id": "c63e1af5-286f-4591-a48c-670dea0905b7",
-          "title": "some title",
-          "description": "dffggg",
-          "assigneeID": "10"
-        },
-        {
-          "id": "4",
-          "title": "Task 4",
-          "description": "5555"
-        }
-      ],
+      "tasks": [],
       "id": "IN_PROGRESS"
     },
     {
-      "tasks": [
-        {
-          "id": "11",
-          "title": "Task 1",
-          "description": "Task 1 description"
-        },
-        {
-          "id": "ce2eb823-9dbe-4aa5-897f-dae73b89ca56",
-          "title": "asd",
-          "description": "asd"
-        }
-      ],
+      "tasks": [],
       "id": "DONE"
     },
     {
-      "tasks": [
-        {
-          "id": "3",
-          "title": "Task 3",
-          "description": "Task some task description 444",
-          "assignee": "1"
-        },
-        {
-          "id": "5f905127-06c2-439a-b533-5f3b8495d9ad",
-          "title": "User",
-          "description": "asd",
-          "assignee": "9"
-        },
-        {
-          "id": "a897d061-1d8b-41d8-b6db-157536597b5f",
-          "title": "zzzz",
-          "description": "zzzz",
-          "assignee": "10"
-        }
-      ],
+      "tasks": [],
       "id": "CLOSED"
     }
   ],
@@ -212,32 +154,16 @@
     {
       "tasks": [
         {
-          "id": "1",
-          "title": "Task some task",
-          "description": "Task some task description"
-        },
-        {
           "id": "f1a4d3d9-0545-4029-8c59-3b5d035a3886",
           "title": "ffffff",
           "description": "gggggggggggg",
           "assigneeID": "6"
-        },
-        {
-          "id": "905f0c8d-8aca-43ec-bf03-b58d1f67c17b",
-          "title": "bbbb",
-          "description": "mmmm",
-          "assigneeID": "2"
         }
       ],
       "id": "BACKLOG"
     },
     {
       "tasks": [
-        {
-          "id": "3",
-          "title": "Task 3",
-          "description": "Task some task description 444"
-        },
         {
           "id": "d4e9c8be-1b5f-49c1-a998-412e2adafe4b",
           "title": "hhhh",
@@ -248,61 +174,15 @@
       "id": "OPEN"
     },
     {
-      "tasks": [
-        {
-          "id": "4",
-          "title": "Task 4",
-          "description": "5555"
-        },
-        {
-          "id": "2",
-          "title": "Task 2",
-          "description": "Task some task description 3"
-        }
-      ],
+      "tasks": [],
       "id": "IN_PROGRESS"
     },
     {
-      "tasks": [
-        {
-          "id": "11",
-          "title": "Task 1",
-          "description": "Task 1 description"
-        },
-        {
-          "id": "d9c6511b-a6ee-4656-bd20-636a56bb18a3",
-          "title": "Another Task",
-          "description": "dffgggg",
-          "assigneeID": "2"
-        },
-        {
-          "id": "281f0c47-2002-44b6-b797-eb3a648faf53",
-          "title": "kkk",
-          "description": "ppppp",
-          "assigneeID": "10"
-        }
-      ],
+      "tasks": [],
       "id": "DONE"
     },
     {
-      "tasks": [
-        {
-          "id": "1111",
-          "title": "Task 1",
-          "description": "Task 1 description"
-        },
-        {
-          "id": "ee1dc27c-36fc-4a7b-a93e-79b392f02818",
-          "title": "User",
-          "description": "descr",
-          "assignee": "10"
-        },
-        {
-          "id": "22",
-          "title": "Task 2",
-          "description": "Task some task description 3"
-        }
-      ],
+      "tasks": [],
       "id": "CLOSED"
     }
   ]

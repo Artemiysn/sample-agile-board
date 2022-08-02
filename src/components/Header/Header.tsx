@@ -1,6 +1,5 @@
-
 import { observer } from "mobx-react-lite";
-import React from "react";
+import {useCallback} from "react";
 import useStore from "../../hooks/useStore";
 import {
   AppBar,
@@ -10,11 +9,18 @@ import {
   Select,
   Toolbar,
   Typography,
+  Button
 } from "@mui/material";
-import  User from "../common/User/User";
+import User from "../common/User/User";
 
 function Header() {
+
   const { Users, Boards } = useStore();
+
+  const clearClosed = useCallback(() => {
+    Boards.actionClearClosedTasks();
+  }, [Boards]);
+
   return (
     <AppBar position="static">
       <Toolbar variant="dense">
@@ -25,10 +31,11 @@ function Header() {
               <FormControl variant="outlined">
                 <Select
                   style={{ backgroundColor: "white", margin: 10 }}
-                  sx={{ m: 1, minWidth: 120 }} size="small"
+                  sx={{ m: 1, minWidth: 120 }}
+                  size="small"
                   native
                   value={Boards?.active?.id || ""}
-                  onChange={(e) => Boards.selectBoard(e.target.value)}
+                  onChange={(e) => Boards.actionSelectBoard(e.target.value)}
                 >
                   {Boards.list.map((b) => {
                     return (
@@ -39,6 +46,7 @@ function Header() {
                   })}
                 </Select>
               </FormControl>
+              <Button variant="contained" color="error" size="large" onClick={clearClosed}>Clear Closed Tasks</Button>
             </Box>
           </Grid>
           <Grid item>

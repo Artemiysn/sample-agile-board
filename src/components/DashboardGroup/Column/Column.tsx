@@ -1,24 +1,25 @@
 import { Card } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import React, { useEffect } from "react";
-import { Draggable, DraggingStyle, NotDraggingStyle } from "react-beautiful-dnd";
+import {
+  Draggable,
+  DraggingStyle,
+  NotDraggingStyle,
+} from "react-beautiful-dnd";
 import { ISection } from "../../../store/sectionStore";
 import Task from "./../Task/Task";
 
-function getItemStyle(draggableStyle: DraggingStyle | NotDraggingStyle | undefined) {
+function getItemStyle(
+  draggableStyle: DraggingStyle | NotDraggingStyle | undefined
+) {
   return {
     padding: 9,
     marginBottom: 8,
-    ...draggableStyle
-  }
-};
+    ...draggableStyle,
+  };
+}
 
-function Column( section: ISection ) {
-
-  useEffect( () => {
-    console.log('column changed');
-  })
-
+function Column(section: ISection) {
   return (
     <div>
       {section?.tasks?.map((task, index) => {
@@ -29,7 +30,7 @@ function Column( section: ISection ) {
                 ref={provided.innerRef}
                 {...provided.draggableProps}
                 {...provided.dragHandleProps}
-                style = {getItemStyle(provided.draggableProps.style)}
+                style={getItemStyle(provided.draggableProps.style)}
               >
                 <Task {...task} />
               </Card>

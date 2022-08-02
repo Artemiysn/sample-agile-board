@@ -16,27 +16,32 @@ import {
 import useStore from "../../../hooks/useStore";
 
 interface newTaskDialogProps {
-  open: boolean,
-  sectionId: string | null,
-  handleClose: () => void
+  open: boolean;
+  sectionId: string | null;
+  handleClose: () => void;
 }
 
 interface ITaskState {
-  title: string,
-  description: string,
-  assigneeID: string
+  title: string;
+  description: string;
+  assigneeID: string;
 }
 
-export default function NewTaskDialog( props: newTaskDialogProps) {
-  const [taskState, setTaskState] = useState<ITaskState>({title: '', description: '', assigneeID: ''});
+export default function NewTaskDialog(props: newTaskDialogProps) {
+
+  const [taskState, setTaskState] = useState<ITaskState>({
+    title: "",
+    description: "",
+    assigneeID: "",
+  });
+
   const { Users, Boards } = useStore();
 
   const updateTaskState = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value, name } = event.target;
-
     setTaskState((prevTaskState: ITaskState) => ({
       ...prevTaskState,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -44,9 +49,9 @@ export default function NewTaskDialog( props: newTaskDialogProps) {
     const { value, name } = event.target;
     setTaskState((prevTaskState: ITaskState) => ({
       ...prevTaskState,
-      [name]: value
+      [name]: value,
     }));
-  }
+  };
 
   const createTask = useCallback(
     (event) => {
@@ -54,14 +59,16 @@ export default function NewTaskDialog( props: newTaskDialogProps) {
       if (props.sectionId === null) return null;
       Boards.active?.addTask(props.sectionId, taskState);
       props.handleClose();
-      setTaskState({title: '', description: '', assigneeID: ''});
+      setTaskState({ title: "", description: "", assigneeID: "" });
     },
     [taskState, Boards, props.handleClose, props.sectionId]
   );
 
   return (
     <Dialog open={props.open} onClose={props.handleClose}>
-      <DialogTitle id="alert-dialog-title" style={{ padding: "16px 32px"}} >Creating A New Task:</DialogTitle>
+      <DialogTitle id="alert-dialog-title" style={{ padding: "16px 32px" }}>
+        Creating A New Task:
+      </DialogTitle>
       <form onSubmit={createTask}>
         <DialogContent style={{ minWidth: 500 }}>
           <Box p={1}>
@@ -88,7 +95,7 @@ export default function NewTaskDialog( props: newTaskDialogProps) {
             />
           </Box>
           <Box p={1}>
-            <FormControl fullWidth >
+            <FormControl fullWidth>
               <InputLabel id="assignee-select">Assignee</InputLabel>
               <Select
                 required
