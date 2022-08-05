@@ -3,8 +3,8 @@ import { observer } from "mobx-react-lite";
 import Header from "./components/Header/Header";
 import Dashboard from "./components/DashboardGroup/Dashboard/Dashboard";
 import useStore from "./hooks/useStore";
-import ErrorPage from "./components/common/ErrorPage/ErrorPage";
-import LoadingPage from "./components/common/LoadingPage/LoadingPage";
+import ErrorPage from "./components/Pages/ErrorPage/ErrorPage";
+import LoadingPage from "./components/Pages/LoadingPage/LoadingPage";
 
 const App = () => {
 

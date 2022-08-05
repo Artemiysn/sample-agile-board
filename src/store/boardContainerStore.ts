@@ -31,7 +31,8 @@ export default class BoardContainer {
       active: observable,
       list: computed,
       actionClearClosedTasks: action,
-      actionSelectBoard: action
+      actionSelectBoard: action,
+      actionLoad: action
     });
     this.actionLoad();
   }

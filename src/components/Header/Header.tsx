@@ -17,10 +17,6 @@ function Header() {
 
   const { Users, Boards } = useStore();
 
-  const clearClosed = useCallback(() => {
-    Boards.actionClearClosedTasks();
-  }, [Boards]);
-
   return (
     <AppBar position="static">
       <Toolbar variant="dense">
@@ -30,8 +26,7 @@ function Header() {
               <Typography variant="h5">Dashboard:</Typography>
               <FormControl variant="outlined">
                 <Select
-                  style={{ backgroundColor: "white", margin: 10 }}
-                  sx={{ m: 1, minWidth: 120 }}
+                  style={{ backgroundColor: "white", margin: 10, minWidth: 120 }}
                   size="small"
                   native
                   value={Boards?.active?.id || ""}
@@ -46,7 +41,7 @@ function Header() {
                   })}
                 </Select>
               </FormControl>
-              <Button variant="contained" color="error" size="large" onClick={clearClosed}>Clear Closed Tasks</Button>
+              <Button variant="contained" color="error" size="large" onClick={() => Boards.actionClearClosedTasks()}>Clear Closed Tasks</Button>
             </Box>
           </Grid>
           <Grid item>

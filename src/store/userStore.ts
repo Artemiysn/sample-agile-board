@@ -25,7 +25,8 @@ export default class UserStore {
     makeObservable(this, {
       users: observable,
       me: observable,
-      list: computed
+      list: computed,
+      actionLoad: action
     });
     this.actionLoad();
   }

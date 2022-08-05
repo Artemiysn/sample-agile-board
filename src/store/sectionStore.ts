@@ -36,7 +36,8 @@ export class Section {
     root: rootStore
   ) {
     makeObservable(this, {
-      tasks: observable
+      tasks: observable,
+      actionLoad: action
     });
     this.root = root;
     this.parentBoardId = parentBoardId;
