@@ -15,7 +15,7 @@ function getListStyle(isDraggingOver: boolean) {
 }
 
 function Dashboard() {
-  
+
   const { Boards } = useStore();
   const [newTaskToSection, setNewTaskToSection] = useState<null | string>(null);
 

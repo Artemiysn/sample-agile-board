@@ -4,7 +4,7 @@ import { ITask } from "../../../store/sectionStore";
 import User from "../../common/User/User";
 import useStore from "../../../hooks/useStore";
 
-export default function Task(task: ITask) {
+const Task = React.memo((task: ITask) => {
   
   const { Users } = useStore();
   const user = Users.users.find((u) => u.id == task.assigneeID);
@@ -20,4 +20,6 @@ export default function Task(task: ITask) {
       {user != undefined && <User {...user} />}
     </CardContent>
   );
-}
+})
+
+export default Task;
